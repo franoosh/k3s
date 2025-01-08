@@ -79,7 +79,7 @@ fi
 VERSION_ROOT="v0.14.1"
 
 DEPENDENCIES_URL="https://raw.githubusercontent.com/kubernetes/kubernetes/${VERSION_K8S}/build/dependencies.yaml"
-VERSION_GOLANG="go"$(curl -sL "${DEPENDENCIES_URL}" | yq -e '.dependencies[] | select(.name == "golang: upstream version").version' -)
+VERSION_GOLANG="go"$(curl -sL "${DEPENDENCIES_URL}" | yq -er '.dependencies[] | select(.name == "golang: upstream version").version' -)
 
 if [[ -n "$GIT_TAG" ]]; then
     if [[ ! "$GIT_TAG" =~ ^"$VERSION_K8S"[+-] ]]; then
